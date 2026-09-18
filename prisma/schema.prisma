@@ -120,6 +120,7 @@ model User {
   approvalNote      String?
   tenant            Tenant?
   loginEvents       LoginEvent[]
+  sessions          Session[]
   approvalRequests  ApprovalAction[] @relation("ApprovalRequestUser")
   approvalDecisions ApprovalAction[] @relation("ApprovalDecisionMaker")
   recordedPayments  Payment[]        @relation("PaymentRecordedBy")
@@ -307,4 +308,19 @@ model AuditEvent {
   @@index([actorUserId, createdAt])
   @@index([action, createdAt])
   @@index([entityType, entityId])
+}
+
+model Session {
+  id         String    @id @default(cuid())
+  userId     String
+  tokenHash  String    @unique
+  createdAt  DateTime  @default(now())
+  expiresAt  DateTime
+  lastUsedAt DateTime?
+  revokedAt  DateTime?
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@index([revokedAt])
 }
