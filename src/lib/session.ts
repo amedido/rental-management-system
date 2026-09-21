@@ -109,3 +109,36 @@ export async function revokeCurrentSession(): Promise<void> {
 
   cookieStore.delete(SESSION_COOKIE_NAME);
 }
+
+export async function requireAdmin() {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    return {
+      user: null,
+      response: Response.json(
+        {
+          error: "Authentication required.",
+        },
+        { status: 401 },
+      ),
+    };
+  }
+
+  if (user.role !== "SUPER_ADMIN" && user.role !== "ADMIN") {
+    return {
+      user: null,
+      response: Response.json(
+        {
+          error: "Administrator access required.",
+        },
+        { status: 403 },
+      ),
+    };
+  }
+
+  return {
+    user,
+    response: null,
+  };
+}
