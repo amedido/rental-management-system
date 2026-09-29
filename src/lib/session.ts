@@ -142,3 +142,36 @@ export async function requireAdmin() {
     response: null,
   };
 }
+
+export async function requireTenant() {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    return {
+      user: null,
+      response: Response.json(
+        {
+          error: "Authentication required.",
+        },
+        { status: 401 },
+      ),
+    };
+  }
+
+  if (user.role !== "TENANT") {
+    return {
+      user: null,
+      response: Response.json(
+        {
+          error: "Tenant access required.",
+        },
+        { status: 403 },
+      ),
+    };
+  }
+
+  return {
+    user,
+    response: null,
+  };
+}

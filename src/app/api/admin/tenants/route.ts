@@ -24,6 +24,7 @@ export async function GET() {
       select: {
         id: true,
         userId: true,
+        monthlyRent: true,
         moveInAt: true,
         requestedUnitNumber: true,
         user: {
@@ -66,12 +67,28 @@ export async function GET() {
         unitNumber: true,
         floor: true,
         status: true,
+        monthlyRent: true,
       },
     }),
   ]);
 
   return Response.json({
-    tenants,
-    availableUnits,
+    tenants: tenants.map((tenant) => ({
+      id: tenant.id,
+      userId: tenant.userId,
+      monthlyRent: tenant.monthlyRent.toString(),
+      moveInAt: tenant.moveInAt,
+      requestedUnitNumber: tenant.requestedUnitNumber,
+      user: tenant.user,
+      unit: tenant.unit,
+    })),
+
+    availableUnits: availableUnits.map((unit) => ({
+      id: unit.id,
+      unitNumber: unit.unitNumber,
+      floor: unit.floor,
+      status: unit.status,
+      monthlyRent: unit.monthlyRent.toString(),
+    })),
   });
 }

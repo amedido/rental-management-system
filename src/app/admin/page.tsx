@@ -135,6 +135,31 @@ export default function AdminPage() {
           >
           Manage tenant units
           </a>
+          <a
+          href="/admin/billing/rent"
+          className="mt-3 inline-block rounded-lg bg-emerald-700 px-4 py-2 font-semibold text-white hover:bg-emerald-800"
+          >
+          Generate rent bills
+          </a>
+          <a
+          href="/admin/settings/billing"
+          className="mt-3 inline-block rounded-lg bg-purple-700 px-4 py-2 font-semibold text-white hover:bg-purple-800"
+          >
+          Billing settings
+          </a>
+          <a
+          href="/admin/payments"
+          className="mt-3 inline-block rounded-lg bg-emerald-700 px-4 py-2 font-semibold text-white hover:bg-emerald-800"
+          >
+          Record payments
+          </a>
+          <a
+          href="/admin/payments/history"
+          className="mt-3 inline-block rounded-lg bg-indigo-700 px-4 py-2 font-semibold text-white hover:bg-indigo-800"
+          >
+           View payment history
+          </a>
+
         </div>
       </section>
     </main>
