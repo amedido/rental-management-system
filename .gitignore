@@ -45,3 +45,5 @@ next-env.d.ts
 .claude/
 .cursor/
 .devin/
+billing-models.txt
+session-code.txt
