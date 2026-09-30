@@ -196,13 +196,6 @@ export default function TenantPage() {
     };
   }, [loadSummary]);
 
-  async function signOut() {
-    await fetch("/api/auth/logout", {
-      method: "POST",
-    });
-
-    router.replace("/login");
-  }
 
   if (isLoading) {
     return (
@@ -243,7 +236,7 @@ export default function TenantPage() {
 
   return (
     <main className="min-h-screen bg-slate-100">
-      <header className="flex items-center justify-between bg-blue-800 px-8 py-6 text-white">
+      <header className="bg-blue-800 px-8 py-6 text-white">
         <div>
           <p className="text-sm text-blue-100">
             Mashaallah Apartments
@@ -253,14 +246,6 @@ export default function TenantPage() {
             Tenant Portal
           </h1>
         </div>
-
-        <button
-          type="button"
-          onClick={() => void signOut()}
-          className="rounded-lg bg-red-600 px-4 py-2 font-semibold hover:bg-red-700"
-        >
-          Sign out
-        </button>
       </header>
 
       <section className="mx-auto max-w-7xl space-y-6 p-8">
@@ -334,7 +319,10 @@ export default function TenantPage() {
           )}
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div 
+           id="balances"
+           className="grid scroll-mt-6 gap-6 md:grid-cols-3"
+          >
           <div className="rounded-xl bg-white p-6 shadow">
             <p className="text-sm text-slate-500">
               Outstanding rent
@@ -366,7 +354,10 @@ export default function TenantPage() {
           </div>
         </div>
 
-        <section className="rounded-xl bg-white p-6 shadow">
+        <section
+          id="rent-bills"
+           className="scroll-mt-6 rounded-xl bg-white p-6 shadow"
+          >
           <h2 className="text-xl font-bold text-slate-900">
             Rent bill history
           </h2>
@@ -432,7 +423,10 @@ export default function TenantPage() {
           )}
         </section>
 
-        <section className="rounded-xl bg-white p-6 shadow">
+        <section 
+          id="water-bills"
+          className="scroll-mt-6 rounded-xl bg-white p-6 shadow"
+          >
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <h2 className="text-xl font-bold text-slate-900">
@@ -529,10 +523,13 @@ export default function TenantPage() {
           )}
         </section>
 
-        <section className="rounded-xl bg-white p-6 shadow">
-  <h2 className="text-xl font-bold text-slate-900">
-    Payment and receipt history
-  </h2>
+        <section
+          id="payments"
+          className="scroll-mt-6 rounded-xl bg-white p-6 shadow"
+          >
+          <h2 className="text-xl font-bold text-slate-900">
+            Payment and receipt history
+          </h2>
 
   {data.payments.length === 0 ? (
     <p className="mt-4 text-slate-600">
