@@ -11,6 +11,10 @@ const navigation = [
     label: "Tenants",
     href: "/admin/tenants",
   },
+    {
+    label: "Account management",
+    href: "/admin/account-management",
+  },
   {
     label: "Rent billing",
     href: "/admin/billing/rent",

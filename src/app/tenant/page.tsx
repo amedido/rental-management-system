@@ -1,5 +1,7 @@
 "use client";
 
+import AuthenticatedProfileHeader from "@/app/components/AuthenticatedProfileHeader";
+
 import {
   useCallback,
   useEffect,
@@ -210,12 +212,26 @@ export default function TenantPage() {
   if (error || !data) {
     return (
       <main className="min-h-screen bg-slate-100">
-        <header className="bg-blue-800 px-8 py-6 text-white">
-          <p className="text-sm text-blue-100">
-            Mashaallah Apartments
-          </p>
-          <h1 className="text-2xl font-bold">Tenant Portal</h1>
+        <header className="bg-blue-800 px-6 py-5 text-white shadow-sm md:px-8">
+          <div className="flex flex-wrap items-center justify-between gap-5">
+           <div>
+             <p className="text-sm font-medium text-blue-100">
+              Mashaallah Apartments
+             </p>
+
+             <h1 className="mt-1 text-3xl font-bold tracking-tight">
+              Tenant Portal
+             </h1>
+
+             <p className="mt-1 text-sm text-blue-100">
+             View your balances, bills, payments, and receipts.
+             </p>
+           </div>
+
+           <AuthenticatedProfileHeader portal="tenant" />
+         </div>
         </header>
+
 
         <section className="mx-auto max-w-3xl p-8">
           <div className="rounded-xl bg-red-50 p-6 text-red-700 shadow">

@@ -1,5 +1,7 @@
 "use client";
 
+import AuthenticatedProfileHeader from "@/app/components/AuthenticatedProfileHeader";
+
 import {
   useCallback,
   useEffect,
@@ -208,39 +210,43 @@ export default function AdminDashboardPage() {
 
   return (
     <main className="min-h-screen bg-slate-100">
-      
+
       <section className="min-w-0 flex-1">
-        <header className="border-b border-slate-200 bg-white px-6 py-5 shadow-sm md:px-8">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <p className="text-sm font-medium text-blue-700">
-                Mashaallah Apartments
-              </p>
+        <header className="bg-blue-800 px-6 py-5 text-white shadow-sm md:px-8">
+  <div className="flex flex-wrap items-center justify-between gap-5">
+    <div>
+      <p className="text-sm font-medium text-blue-100">
+        Mashaallah Apartments
+      </p>
 
-              <h1 className="mt-1 text-3xl font-bold tracking-tight text-slate-900">
-                Administrator Dashboard
-              </h1>
+      <h1 className="mt-1 text-3xl font-bold tracking-tight">
+        Administrator Dashboard
+      </h1>
 
-              <p className="mt-1 text-sm text-slate-500">
-                Monitor collections, balances, billing, and
-                occupancy.
-              </p>
-            </div>
+      <p className="mt-1 text-sm text-blue-100">
+        Monitor collections, balances, billing, and occupancy.
+      </p>
+    </div>
 
-            <button
-              type="button"
-              onClick={() => void loadDashboard(true)}
-              disabled={isRefreshing}
-              className="rounded-lg bg-slate-900 px-4 py-3 text-sm font-semibold text-white hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
-            >
-              {isRefreshing ? "Refreshing..." : "Refresh data"}
-            </button>
-          </div>
+    <AuthenticatedProfileHeader portal="admin" />
+  </div>
 
-          <p className="mt-4 text-xs text-slate-500">
-            Last updated: {formatDateTime(data.generatedAt)}
-          </p>
-        </header>
+  <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+    <p className="text-xs text-blue-100">
+      Last updated: {formatDateTime(data.generatedAt)}
+    </p>
+
+    <button
+      type="button"
+      onClick={() => void loadDashboard(true)}
+      disabled={isRefreshing}
+      className="rounded-lg bg-white px-4 py-3 text-sm font-semibold text-blue-800 hover:bg-blue-50 disabled:cursor-not-allowed disabled:opacity-60"
+    >
+      {isRefreshing ? "Refreshing..." : "Refresh data"}
+    </button>
+  </div>
+</header>
+
 
         <div className="space-y-8 p-6 md:p-8">
           <section>

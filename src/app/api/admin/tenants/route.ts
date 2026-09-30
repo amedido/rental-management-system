@@ -13,7 +13,6 @@ export async function GET() {
       where: {
         user: {
           role: "TENANT",
-          accountStatus: "ACTIVE",
         },
       },
       orderBy: {
