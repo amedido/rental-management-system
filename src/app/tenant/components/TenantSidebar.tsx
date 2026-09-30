@@ -23,6 +23,10 @@ const navigation = [
     label: "Payments and receipts",
     href: "/tenant#payments",
   },
+    {
+    label: "Statement",
+    href: "/tenant/statement",
+  },
 ];
 
 function getPathname(href: string) {
@@ -74,9 +78,14 @@ export default function TenantSidebar() {
       <nav className="flex-1 space-y-2 overflow-y-auto px-4 py-6">
         {navigation.map((item) => {
           const itemPathname = getPathname(item.href);
-          const isActive =
-            itemPathname === "/tenant" &&
-            pathname === "/tenant";
+
+          const isSectionLink = item.href.includes("#");
+          const isActive = isSectionLink
+            ? false
+            : itemPathname === "/tenant"
+            ? pathname === "/tenant"
+            : pathname === itemPathname ||
+            pathname.startsWith(`${itemPathname}/`);
 
           return (
             <button
